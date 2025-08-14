@@ -1,0 +1,26 @@
+#include <stdio.h> // Biblioteca padrão
+
+//função recursiva para calcular a somatoria de 1 até n
+int somatoria (int n) {
+	if (n == 1)// caso o N seja 1, a somatoria é 1
+	return 1; // retorna 1 e encerra a chamada recursiva
+	else
+	return n + somatoria (n-1); // chamada recursiva: soma n com a somatoria de 1 até n-1
+		
+}
+int main () {
+	int N; // variavel para armazenar o numero digitado pelo usuario 
+	
+	printf ("Digite um numero: "); // solicitando pro usuario digitar um numero
+	scanf ("%d", &N); // esta sendo o numero e guardando na variavel N 
+	
+	if (N < 1) {//verifica se N é menor que 1
+		printf ("Digite um numero maior ou igual a 1. \n");
+	} else {
+		int resultado = somatoria (N); // Chama a função recursiva e armazena o resultado
+		printf (" A somatoria de 1 a %d eh: %d\n", N, resultado); //mostra o resultado
+	}
+	
+	return 0;
+	
+}
