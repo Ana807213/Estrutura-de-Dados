@@ -1,0 +1,40 @@
+#include <stdio.h> // Biblioteca padrão
+
+// Função que imprime o movimento de um disco de um pino para o outro
+void moveDisco (char origem, char destino){
+	printf ("%c -> %c \n", origem, destino); //mostra na tela de qual pino para qual pino o disco esta se movendo
+}
+
+// função recursiva para devolver a Torre de Hanói
+// Altura = numero de discos a mover 
+// Origem = pino de onde os discos estao saindo
+// destino = pino para onde os discos vao
+// trabalho = pino auxiliar 
+
+void torreHanoi (int altura, char origem, char destino, char trabalho) {
+	if ( altura == 1){ //Caso base : se só tiver 1 disco basta mover diretamente
+	moveDisco (origem, destino); // move disco do pino origem para o pino destino
+	} else {
+		// Passo 1 : mover n-1 discos de origem para trabalho (usando destino como auxiliar)
+		torreHanoi (altura -1,origem, trabalho, destino);
+		
+		//Passo 2: mover o disco maior (o disco restante) de origem para destino
+		moveDisco (origem, destino);
+		
+		// Passo 3 : mover os n -1 discos do pino trabalho para o pino destino (usando origem como auxiliar)
+		torreHanoi (altura -1, trabalho, destino, origem);
+	}
+}
+int main () {
+	int n; // variavel para armazenar o numero de discos 
+	
+	printf ("Digite N: "); // usuario vai digitar o numero
+	scanf ("%d", &n); // le o numero e armazena na variavel 
+	
+	//Chama a função recursiva para resolver a Torre de Hanói
+	// 'A' = origem, 'B' = destino, 'C' = pino auxiliar 
+	torreHanoi (n, 'A', 'B', 'C');
+	
+	return 0;
+	
+}
